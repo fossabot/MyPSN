@@ -1,6 +1,7 @@
 # MyPSN - an unofficial desktop app for My Playstation
 
 Built using Electron.
+![Alt text](https://i.imgur.com/4aZmm4J.gifve "App Gif")
 
 
 PSN - Playstation and the Playstation Logo are the registered trademark of Sony.
