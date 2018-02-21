@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyPSN</title>
+    <style>
+    @keyframes loading-animation {
+        0% {
+            -moz-transform: rotateZ(90deg) scale(0);
+            -ms-transform: rotateZ(90deg) scale(0);
+            -webkit-transform: rotateZ(90deg) scale(0);
+            transform: rotateZ(90deg) scale(0);
+        }
+        45% {
+            -moz-transform: rotateZ(0deg) scale(1);
+            -ms-transform: rotateZ(0deg) scale(1);
+            -webkit-transform: rotateZ(0deg) scale(1);
+            transform: rotateZ(0deg) scale(1);
+        }
+        55% {
+            -moz-transform: rotateZ(0deg) scale(1);
+            -ms-transform: rotateZ(0deg) scale(1);
+            -webkit-transform: rotateZ(0deg) scale(1);
+            transform: rotateZ(0deg) scale(1);
+        }
+        100% {
+            -moz-transform: rotateZ(-90deg) scale(0);
+            -ms-transform: rotateZ(-90deg) scale(0);
+            -webkit-transform: rotateZ(-90deg) scale(0);
+            transform: rotateZ(-90deg) scale(0);
+        }
+        }
+        body, html {
+        height: 100%;
+        overflow: hidden;
+        }
+
+        * {
+        margin: 0;
+        padding: 0;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        }
+        .psn-loading {
+        position: absolute;
+        min-height: 60px;
+        top: 50%;
+        left: 0;
+        right: 0;
+        padding: 20px 0 15px 0;
+        margin-top: -30px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        }
+        .psn-loading svg {
+        margin: 0 2px;
+        -moz-transform: rotateZ(90deg) scale(0);
+        -ms-transform: rotateZ(90deg) scale(0);
+        -webkit-transform: rotateZ(90deg) scale(0);
+        transform: rotateZ(90deg) scale(0);
+        }
+        .psn-loading .button-elements svg:nth-child(1) {
+        -moz-animation: loading-animation 1.6s 0s 1;
+        -webkit-animation: loading-animation 1.6s 0s 1;
+        animation: loading-animation 1.6s 0s 1;
+        }
+        .psn-loading .button-elements svg:nth-child(2) {
+        -moz-animation: loading-animation 1.6s 0.15s 1;
+        -webkit-animation: loading-animation 1.6s 0.15s 1;
+        animation: loading-animation 1.6s 0.15s 1;
+        }
+        .psn-loading .button-elements svg:nth-child(3) {
+        -moz-animation: loading-animation 1.6s 0.3s 1;
+        -webkit-animation: loading-animation 1.6s 0.3s 1;
+        animation: loading-animation 1.6s 0.3s 1;
+        }
+        .psn-loading .button-elements svg:nth-child(4) {
+        -moz-animation: loading-animation 1.6s 0.45s 1;
+        -webkit-animation: loading-animation 1.6s 0.45s 1;
+        animation: loading-animation 1.6s 0.45s 1;
+        }
+        body {
+            background: #2d2d2d;
+        }
+    </style>
+</head>
+<body>
+    <div class="psn-loading">
+       <div class="button-elements js-random-button"></div>
+    </div>
+    <script>
+        const render = require("electron").remote;
+        const browserWindow = render.BrowserWindow;
+        const focused = browserWindow.getFocusedWindow();
+        function shuffle(array) {
+        var currentIndex = array.length,
+            temporaryValue,
+            randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+        }
+
+        Array.prototype.random = function () {
+        return this[Math.floor(Math.random() * this.length)];
+        };
+
+        var elements = document.querySelector('.js-random-button');
+        var buttons = ['<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g><path d="M22,4.06987975 L19.9210651,2 L11.9229672,9.96136729 L4.07893485,2.14960704 L2,4.21948679 L9.84593438,12.031247 L2.06466952,19.7786194 L4.14550642,21.850393 L11.9229672,14.1030205 L19.8563956,22 L21.9353305,19.9301203 L14.0038041,12.031247 L22,4.06987975" fill="#ffffff"></path></g></svg>', '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g><path d="M2,22 L22,22 L22,2 L2,2 L2,22 Z M4.71602589,4.71602589 L19.2839741,4.71602589 L19.2839741,19.2839741 L4.71602589,19.2839741 L4.71602589,4.71602589 Z" fill="#ffffff"></path></g></svg>', '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g><path d="M11.7248348,1 L0,22 L24,22 L11.7248348,1 Z M11.7602798,6.09549095 L19.5600466,19.4409144 L4.30750097,19.4409144 L11.7602798,6.09549095 Z" fill="#ffffff"></path></g></svg>', '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g><path d="M12.0019054,1 C5.92551533,1 1,5.92446292 1,12 C1,18.0755371 5.92551533,23 12.0019054,23 C18.0744847,23 23,18.0755371 23,12 C23,5.92446292 18.0744847,1 12.0019054,1 Z M12.0019054,20.0880111 C7.53369132,20.0880111 3.91338992,16.4670825 3.91338992,12 C3.91338992,7.53291753 7.53369132,3.91198891 12.0019054,3.91198891 C16.4644033,3.91198891 20.0866101,7.53291753 20.0866101,12 C20.0866101,16.4670825 16.4644033,20.0880111 12.0019054,20.0880111 Z" fill="#ffffff"></path></g></svg>']
+        setInterval(function () {
+        elements.innerHTML = buttons.random() + buttons.random() + buttons.random() + buttons.random();
+        elements.classList.toggle('animated');
+        }, 2000);
+        setInterval(function() {
+            let mainframe = new browserWindow({ fullscreen: true });
+            mainframe.loadURL(__dirname +'/main.html');
+            focused.close();
+        }, 6000);
+    </script>
+</body>
+</html>
