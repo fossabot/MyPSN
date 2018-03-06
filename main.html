@@ -25,10 +25,21 @@
         const globalShortcut = render.globalShortcut;
         const app = render.app;
         const CurrentView = render.BrowserWindow.getFocusedWindow();
+        const openAboutWindow = require('about-window');
         globalShortcut.unregisterAll();
         globalShortcut.register("CommandOrControl+Q", () => {
             CurrentView.close();
             app.quit();
+        });
+        globalShortcut.register("CommandOrControl+F", () => {
+            openAboutWindow.default({
+                icon_path: 'file://'+__dirname+'/mypsn-icon.png',
+                description: 'An Unofficial My Playstation Desktop Application.',
+                copyright: "Copyright © Liam 2018",
+                homepage: 'https://github.com/ImNotLiam/MyPSN',
+                bug_report_url: 'https://github.com/ImNotLiam/MyPSN/issues',
+                css_path: 'file://'+__dirname+'/about.css'
+            });
         });
         var webview = document.querySelector('webview');
         webview.addEventListener('dom-ready', function () {

@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "Liam",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "jquery": "3.3.1",
     "electron": "1.8.2",
@@ -24,5 +24,8 @@
     "win": {
       "icon": "app/assets/psn.ico"
     }
+  },
+  "dependencies": {
+    "about-window": "^1.10.0"
   }
 }
