@@ -26,6 +26,6 @@
     }
   },
   "dependencies": {
-    "about-window": "^1.11.0"
+    "about-window": "^1.11.1"
   }
 }
