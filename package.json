@@ -17,7 +17,7 @@
     "electron-builder": "^20.24.4",
     "electron-packager": "^12.1.0",
     "electron-winstaller": "^2.6.4",
-    "electron": "^2.0.5"
+    "electron": "^2.0.6"
   },
   "build": {
     "appId": "com.liam.mypsn",
